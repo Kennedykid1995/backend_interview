@@ -1,0 +1,24 @@
+{
+  "name": "backend_interview",
+  "version": "1.0.0",
+  "description": "Some of the advantages of using Node.js for writing server side code are:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kennedykid1995/backend_interview.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kennedykid1995/backend_interview/issues"
+  },
+  "homepage": "https://github.com/Kennedykid1995/backend_interview#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
