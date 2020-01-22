@@ -28,6 +28,27 @@ server.post('/names', (req, res) => {
     res.status(201).json(names); 
 });
 
+server.put('/names', (req, res) => {
+    res.status(200).json({url: '/names', operation:'PUT'})
+})
+
+server.put('/names/:id', (req, res) => {
+    res.status(200).json({url: '/names', operation: 'PUT'})
+})
+
+server.put('/names/:id', (req, res) => {
+    const name = names.find(n => n.id == req.params.id);
+
+    if(!name){
+        res.status(404).json({message: 'name does not exist'});
+    } else {
+        Object.assign(name, req.body); 
+
+        res.status(200).json(name); 
+    };
+})
+
+
 
 server.listen(5000, () => 
     console.log('Server running on http://localhost:5000')
