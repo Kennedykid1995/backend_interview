@@ -16,11 +16,14 @@ server.get('/notes', (req, res) => {
     db('notes')
     .then(notes => res.status(200).json(notes))
     .catch(err => res.status(500).json(err));
-    
 });
 
 server.get('/notes/:id', (req, res) => {
     //a note
+    db("notes")
+    .where({id})
+    .then(note => res.status(200).json(note))
+    .catch(err => res.status(500).json(err)); 
 });
 
 server.post('/notes', (req, res) => {
