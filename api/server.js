@@ -10,6 +10,7 @@ server.get('/', (req, res) => {
 
 server.get('/notes', (req, res) => {
     //all notes 
+    res.send("All Notes")
 });
 
 server.get('/notes/:id', (req, res) => {
