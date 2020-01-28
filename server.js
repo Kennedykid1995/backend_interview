@@ -20,6 +20,10 @@ server.get('/names', (req, res) => {
     ];
     res.status(200).json(names); 
 })
+
+server.get("/names/:id", (res, res) => {
+    
+})
 let nextId = 3; 
 
 server.post('/names', (req, res) => {
