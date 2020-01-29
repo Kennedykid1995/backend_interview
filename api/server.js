@@ -20,6 +20,7 @@ server.get('/notes', (req, res) => {
 
 server.get('/notes/:id', (req, res) => {
     //a note
+    const {id} = req.params; 
     db("notes")
     .where({id})
     .then(note => res.status(200).json(note))
@@ -41,15 +42,37 @@ server.post('/notes', (req, res) => {
         .then(ids => {
             res.status(201).json(ids);
         })
-        .catch(err => res.status(500).json(err)); 
+        .catch(err => res.status(500).json(err));
 });
 
 server.put('/notes/:id', (req, res) => {
     //edit a note 
+    const changes = req.body; 
+    const {id} = req.params; 
+
+    db("notes")
+        .where({id})
+        .update(changes)
+        .then(count => {
+            res.status(200).json(count)
+        })
+        .catch(err => {
+            res.status(500).json(err); 
+        }); 
 });
 
 server.delete('/notes/:id', (req, res) => {
-    //delete a note 
+    //delete a note
+    const {id} = req.params; 
+    db("notes")
+    .where({id})
+    .del()
+    .then(count => {
+        res.status(200).json(count); 
+    })
+    .catch(err => {
+        res.status(500).json(err); 
+    })
 });
 
 module.exports = server; 
