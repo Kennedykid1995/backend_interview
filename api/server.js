@@ -28,6 +28,20 @@ server.get('/notes/:id', (req, res) => {
 
 server.post('/notes', (req, res) => {
     //post to notes 
+    const note = req.body; 
+    const {title} = req.body;
+    const {content} = req.body;
+    if(!title & !content){
+        res
+            .status(400)
+            .json({errorMessage: "NEED TITLE/CONTENT"})
+    }
+    db.insert(note)
+        .into('notes')
+        .then(ids => {
+            res.status(201).json(ids);
+        })
+        .catch(err => res.status(500).json(err)); 
 });
 
 server.put('/notes/:id', (req, res) => {
