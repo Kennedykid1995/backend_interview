@@ -4,6 +4,16 @@ const knex = require('knex');
 const dbConfig = require('../knexfile'); 
 const db = knex(dbConfig.development); 
 const server = express();
+//-----authentication------
+const bcrypt = require('bcryptjs'); 
+
+const credentials = req.body;
+
+const hash = bcrypt.hashSync(credentials.password, 14);
+
+credentials.password = hash;
+
+//-------------------------
 
 server.use(express.json(), cors());
 
