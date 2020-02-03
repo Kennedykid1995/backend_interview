@@ -7,6 +7,14 @@ module.exports = server => {
     server.post('/register', register);
     server.post('login', login); 
     server.get('/auth', authenticate); 
+
+    server.get('/register', (req, res) => {
+        res.send("register page")
+    })
+    server.get('/login', (req, res) => {
+        res.send("login page")
+    })
+
 }
 
 function generateToken(user){
