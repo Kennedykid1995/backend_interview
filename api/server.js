@@ -13,6 +13,10 @@ server.get('/', (req, res) => {
     res.send("Hello from Express")
 });
 
+server.get('/register', (req, res) => {
+    res.send("register page")
+})
+
 server.get('/notes', (req, res) => {
     //all notes 
     db('notes')
