@@ -44,7 +44,7 @@ function register(req, res){
 function login(req, res){
     let creds = req.body;
 
-    db('users')
+    db('user')
         .where({username: creds.username})
         .first()
         .then(user => {
