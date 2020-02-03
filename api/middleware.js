@@ -5,7 +5,7 @@ module.exports = {
 };
 
 //implementation details
-function authentication(req, res, next){
+function authenticate(req, res, next){
     const token = req.get('Authorization');
 
     if(token){

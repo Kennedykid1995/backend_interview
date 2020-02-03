@@ -3,8 +3,10 @@ const cors = require('cors');
 const knex = require('knex');
 const dbConfig = require('../knexfile'); 
 const db = knex(dbConfig.development); 
+const configureRoutes = require('./auth');
 const server = express();
 
+configureRoutes(server); 
 server.use(express.json(), cors());
 
 server.get('/', (req, res) => {

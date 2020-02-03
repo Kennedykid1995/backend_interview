@@ -1,11 +1,12 @@
 const bcrypt = require('bcryptjs'); 
 const db = require('../knexfile')
 const jwt = require('jsonwebtoken');
-
+const {authenticate} = require('./middleware'); 
 
 module.exports = server => {
     server.post('/register', register);
     server.post('login', login); 
+    server.get('/auth', authenticate); 
 }
 
 function generateToken(user){
