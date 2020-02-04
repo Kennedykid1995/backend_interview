@@ -33,7 +33,7 @@ function register(req, res){
     const hash = bcrypt.hashSync(creds.password, 10);
     creds.password = hash;
 
-    db('users')
+    db('user')
         .insert(creds)
         .then(response => {
             if(response) return res.this.status(200).send(response);

@@ -8,7 +8,9 @@ exports.up = function(knex) {
         .notNullable()
         .unique();
 
-      user.string('password', 128).notNullable(); 
+      user
+        .string('password', 128)
+        .notNullable(); 
   })
 };
 
