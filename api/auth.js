@@ -14,7 +14,6 @@ module.exports = server => {
     server.get('/login', (req, res) => {
         res.send("login page")
     })
-
 }
 
 function generateToken(user){
@@ -30,9 +29,11 @@ function generateToken(user){
 
 function register(req, res){
     let creds = req.body; 
-    const hash = bcrypt.hash(creds.password, 10);
-    creds.password = hash;
-
+    console.log(creds); 
+    const hashed = bcrypt.hash(creds.password, 10);
+    console.log(hashed); 
+    creds.password = hashed;
+    console.log(hashed); 
     db('user')
         .insert(creds)
         .then(response => {
