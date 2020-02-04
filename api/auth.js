@@ -1,5 +1,7 @@
 const bcrypt = require('bcrypt'); 
-const db = require('../knexfile')
+const dbConfig = require('../knexfile'); 
+const knex = require('knex');
+const db = knex(dbConfig.development); 
 const jwt = require('jsonwebtoken');
 const {authenticate} = require('./middleware'); 
 
@@ -29,11 +31,10 @@ function generateToken(user){
 
     function register(req, res){
     let creds = req.body; 
-    console.log(req, "req"); 
+    console.log(creds, "creds"); 
     const hashed = bcrypt.hash(creds.password, 10);
-    console.log(hashed); 
     creds.password = hashed;
-    console.log(hashed); 
+
     db('user')
         .insert(creds)
         .then(response => {
