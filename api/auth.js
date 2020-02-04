@@ -5,7 +5,7 @@ const {authenticate} = require('./middleware');
 
 module.exports = server => {
     server.post('/register', register);
-    server.post('login', login); 
+    server.post('/login', login); 
     server.get('/auth', authenticate); 
 
     server.get('/register', (req, res) => {
@@ -27,9 +27,9 @@ function generateToken(user){
     return jwt.sign(payload, options); 
 }
 
-function register(req, res){
+    function register(req, res){
     let creds = req.body; 
-    console.log(creds); 
+    console.log(req, "req"); 
     const hashed = bcrypt.hash(creds.password, 10);
     console.log(hashed); 
     creds.password = hashed;

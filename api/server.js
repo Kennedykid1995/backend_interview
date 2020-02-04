@@ -5,6 +5,11 @@ const dbConfig = require('../knexfile');
 const db = knex(dbConfig.development); 
 const configureRoutes = require('./auth');
 const server = express();
+const bodyParser = require('body-parser')
+
+server.use(bodyParser.urlencoded({ extended: true }))
+// parse application/json
+server.use(bodyParser.json())
 
 configureRoutes(server); 
 server.use(express.json(), cors());
