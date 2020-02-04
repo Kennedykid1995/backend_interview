@@ -30,7 +30,7 @@ function generateToken(user){
 
 function register(req, res){
     let creds = req.body; 
-    const hash = bcrypt.hashSync(req.body.password, 10);
+    const hash = bcrypt.hash(creds.password, 10);
     creds.password = hash;
 
     db('user')
