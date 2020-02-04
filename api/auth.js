@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs'); 
+const bcrypt = require('bcrypt'); 
 const db = require('../knexfile')
 const jwt = require('jsonwebtoken');
 const {authenticate} = require('./middleware'); 
@@ -30,7 +30,7 @@ function generateToken(user){
 
 function register(req, res){
     let creds = req.body; 
-    const hash = bcrypt.hashSync(creds.password, 10);
+    const hash = bcrypt.hashSync(req.body.password, 10);
     creds.password = hash;
 
     db('user')
