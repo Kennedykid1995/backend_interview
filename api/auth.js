@@ -32,7 +32,7 @@ function generateToken(user){
     function register(req, res){
     let creds = req.body; 
     console.log(creds, "creds"); 
-    const hashed = bcrypt.hash(creds.password, 10);
+    const hashed = bcrypt.hashSync(creds.password, 10);
     creds.password = hashed;
     db('user')
         .insert(creds)
@@ -50,8 +50,9 @@ function login(req, res){
         .first()
         .then(user => {
             if(user && bcrypt.compareSync(creds.password, user.password)){
-                const token = generateToken(user); 
-                res.status(200).json({token})                
+                const token = generateToken(user);
+                console.log(token)
+                res.status(200).json({token});              
             }else{
                 res.status(401).json({message: "No User Found"});
             }
