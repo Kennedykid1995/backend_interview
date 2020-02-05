@@ -34,11 +34,10 @@ function generateToken(user){
     console.log(creds, "creds"); 
     const hashed = bcrypt.hash(creds.password, 10);
     creds.password = hashed;
-
     db('user')
         .insert(creds)
         .then(response => {
-            if(response) return res.this.status(200).send(response);
+            if(response) return res.status(200).send(response);
         })
         .catch(err => res.status(500).send(err));
 }
