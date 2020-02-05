@@ -44,14 +44,12 @@ function generateToken(user){
 
 function login(req, res){
     let creds = req.body;
-
     db('user')
         .where({username: creds.username})
         .first()
         .then(user => {
             if(user && bcrypt.compareSync(creds.password, user.password)){
                 const token = generateToken(user);
-                console.log(token)
                 res.status(200).json({token});              
             }else{
                 res.status(401).json({message: "No User Found"});
