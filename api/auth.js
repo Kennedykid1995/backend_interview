@@ -4,6 +4,7 @@ const knex = require('knex');
 const db = knex(dbConfig.development); 
 const jwt = require('jsonwebtoken');
 const {authenticate} = require('./middleware'); 
+const jwtkey = require("./key").jwtkey; 
 
 module.exports = server => {
     server.post('/register', register);
@@ -26,7 +27,8 @@ function generateToken(user){
         expiresIn: '1h',
         jwtid: '12345',
     };
-    return jwt.sign(payload, options); 
+    console.log(payload, options);
+    return jwt.sign(payload, jwtkey, options); 
 }
 
     function register(req, res){
@@ -48,13 +50,15 @@ function login(req, res){
         .where({username: creds.username})
         .first()
         .then(user => {
+            console.log(user, "user")
             if(user && bcrypt.compareSync(creds.password, user.password)){
+                console.log(creds.password, "creds.password", user.password, "user.password")
                 const token = generateToken(user);
                 res.status(200).json({token});              
             }else{
                 res.status(401).json({message: "No User Found"});
             }
         })
-        .catch(err => res.status(500).send(err)); 
+        .catch(err => res.status(500).send(console.log(err))); 
 }
 
